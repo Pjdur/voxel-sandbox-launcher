@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('./assets/bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: sans-serif;
+    color: white;
+}
+
+.menu-container {
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Black with 60% opacity */
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    margin: 100px auto;
+    /* Center the menu */
+    text-align: center;
+}
+
+.menu-item {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    margin-top: 10px;
+    border-radius: 10px;
+}
