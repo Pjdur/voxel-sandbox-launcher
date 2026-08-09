@@ -1,20 +1,35 @@
 const { invoke } = window.__TAURI__.core;
+import { WebviewWindow } from '@tauri-apps/api/webviewWindow';
 
-/* useless code
-let greetInputEl;
-let greetMsgEl;
+const singleplayerBtn = document.getElementById('btn-singleplayer');
+const multiplayerBtn = document.getElementById('btn-multiplayer');
 
-async function greet() {
-  // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-  greetMsgEl.textContent = await invoke("greet", { name: greetInputEl.value });
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-  greetInputEl = document.querySelector("#greet-input");
-  greetMsgEl = document.querySelector("#greet-msg");
-  document.querySelector("#greet-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    greet();
-  });
+// Launch game in singleplayer mode
+singleplayerBtn.addEventListener('click', () => {
+  launchGame('singleplayer');
 });
-*/
+
+// Launch game in multiplayer mode
+multiplayerBtn.addEventListener('click', () => {
+  launchGame('multiplayer');
+});
+
+function launchGame(mode) {
+  // Pass the mode as a query parameter in the URL
+  const gameWindow = new WebviewWindow('game-window', {
+    url: `game/index.html?mode=${mode}`,
+    title: `Voxel Sandbox (${mode})`,
+    width: 1280,
+    height: 720,
+    center: true,
+    fullscreen: false,
+  });
+
+  gameWindow.once('tauri://created', () => {
+    console.log(`Game window launched in ${mode} mode!`);
+  });
+
+  gameWindow.once('tauri://error', (e) => {
+    console.error('Error opening game window:', e);
+  });
+}
