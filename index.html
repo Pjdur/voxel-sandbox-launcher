@@ -11,9 +11,24 @@
 
 <body>
   <div class="menu-container">
-    <p>Select a mode</p>
-    <div class="menu-item" id="btn-singleplayer">Singleplayer</div>
-    <div class="menu-item" id="btn-multiplayer">Multiplayer</div>
+    <!-- MAIN MENU -->
+    <div id="main-menu">
+      <p>Select a mode</p>
+      <div class="menu-item" id="btn-singleplayer">Singleplayer</div>
+      <div class="menu-item" id="btn-multiplayer">Multiplayer</div>
+    </div>
+
+    <!-- WORLD SELECTOR MENU (Hidden by default) -->
+    <div id="world-menu" style="display: none;">
+      <p id="world-menu-title">Select a World</p>
+      
+      <div class="input-group">
+        <input type="text" id="new-world-input" placeholder="World Name..." style="width: 80%; padding: 10px; margin-bottom: 10px; border-radius: 6px; border: none;" />
+        <div class="menu-item btn-primary" id="btn-create-world">Play World</div>
+      </div>
+
+      <div class="menu-item btn-secondary" id="btn-back">← Back</div>
+    </div>
   </div>
 </body>
 
