@@ -1,23 +1,31 @@
 {
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
-  "description": "Capability for the main window",
-  "windows": [
-    "main"
-  ],
+  "description": "Capability for launcher and game windows",
+  "windows": ["main", "game-window"],
   "permissions": [
     "core:default",
+    {
+      "identifier": "shell:allow-spawn",
+      "allow": [
+        {
+          "name": "bin/voxel-server",
+          "sidecar": true,
+          "args": true
+        }
+      ]
+    },
     {
       "identifier": "shell:allow-execute",
       "allow": [
         {
           "name": "bin/voxel-server",
-          "sidecar": true
+          "sidecar": true,
+          "args": true
         }
       ]
     },
     "opener:default",
-    "core:webview:allow-create-webview-window",
-    "shell:default"
+    "core:webview:allow-create-webview-window"
   ]
 }

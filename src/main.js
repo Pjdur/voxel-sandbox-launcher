@@ -40,20 +40,27 @@ createWorldBtn.addEventListener('click', async () => {
   let worldName = newWorldInput.value.trim();
   if (!worldName) worldName = 'default';
   
-  const port = 8080; // Default port, could be dynamic in the future
+  const port = 8080;
 
   if (selectedMode === 'multiplayer') {
     try {
-      // Spawn the bun sidecar executable
-      // Note: The sidecar name must match tauri.conf.json exactly, e.g., 'voxel-server'
+      // 1. Omit .exe so Tauri resolves the target triple correctly
       const command = Command.sidecar('bin/voxel-server', [
         '--port', port.toString(),
         '--world', worldName
       ]);
+
+      command.stdout.on('data', line => console.log(`[Server]: ${line}`));
+      command.stderr.on('data', line => console.error(`[Server Error]: ${line}`));
+
       await command.spawn();
       console.log(`Server sidecar spawned on port ${port} for world ${worldName}`);
+
+      // 2. Short pause to let Bun open port 8080 before game connects
+      await new Promise(resolve => setTimeout(resolve, 500));
     } catch (e) {
       console.error('Failed to start the multiplayer server:', e);
+      return; // Don't launch game if server failed
     }
   }
 
