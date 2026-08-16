@@ -13,6 +13,15 @@ Voxel Sandbox is a 3D block game (like Minecraft) built from scratch using JavaS
 - **Play on Wi-Fi (LAN):** Other people on your home Wi-Fi can join your world using a browser like Chrome or Edge—no installation needed for them!
 - **World Saves:** World changes are saved automatically so you don't lose your builds.
 
+## Game Controls
+
+* **W, A, S, D:** Move around
+* **Space:** Jump
+* **Left Click:** Break block
+* **Right Click:** Place block
+* **1 – 5:** Select block type (Dirt, Grass, Stone, Wood, Leaves)
+* **S / L:** Save / Load world (Singleplayer only)
+
 ## Setup & Running
 
 ### 1. Requirements
