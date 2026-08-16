@@ -54,6 +54,7 @@
         const GAME_MODE = urlParams.get('mode') || 'singleplayer';
         const WORLD_NAME = urlParams.get('world') || 'default';
         const PORT = urlParams.get('port') || '8080';
+        const HOST = urlParams.get('host') || window.location.hostname || 'localhost';
 
         // Set UI based on Mode
         if (GAME_MODE === 'multiplayer') {
@@ -85,7 +86,7 @@
         // --- MULTIPLAYER WEBSOCKET ---
         let socket = null;
         if (GAME_MODE === 'multiplayer') {
-            socket = new WebSocket(`ws://localhost:${PORT}`);
+            socket = new WebSocket(`ws://${HOST}:${PORT}`);
             socket.onmessage = (event) => {
                 const data = JSON.parse(event.data);
                 if (data.type === 'init') {
